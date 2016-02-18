@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+require 'yaml'
+require 'json'
+require 'optparse'
+require 'fileutils'
+
+yaml_file   = File.expand_path(ARGV[0], FileUtils.pwd)
+output_file = File.expand_path(ARGV[1], FileUtils.pwd)
+
+yaml = YAML.load(File.read(yaml_file))
+json = yaml.to_json
+
+File.open(output_file, 'w+') do |file|
+  file.puts(json)
+end
